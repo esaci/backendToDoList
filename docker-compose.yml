@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  backend:
+    image: node:lts-alpine
+    container_name: backendToDoList
+    working_dir: /backend
+    volumes:
+      - ./backend:/backend
+    ports:
+      - 8100:8100
+      - 5555:5555
+    command: sh -c "npm i && npm run dev"
+    restart: unless-stopped
+    networks:
+      - EliasIndustry3
+  
+volumes:
+  data:
+
+networks:
+  EliasIndustry3:
