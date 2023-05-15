@@ -5,6 +5,8 @@ interface Todo {
 	title: string;
 	description: string;
 	done: boolean;
+	status: string;
+	date: Date;
 }
 
 
@@ -14,19 +16,42 @@ const database: Todo[] = [
 		title: 'Faire les courses',
 		description: 'Acheter du pain, du lait et des oeufs',
 		done: false,
+		status: "a faire",
+		date: new Date(),
 	},
 	{
 		id: 2,
 		title: 'Acheter un nouveau téléphone',
 		description: 'Acheter un nouveau téléphone',
 		done: false,
+		status: "a faire",
+		date: new Date(),
 	},
 	{
 		id: 3,
 		title: 'Acheter un nouveau PC',
 		description: 'Acheter un nouveau PC',
 		done: false,
-	},];
+		status: "a faire",
+		date: new Date(),
+	},
+	{
+		id: 4,
+		title: 'Acheter un nouveau PC',
+		description: 'Acheter un nouveau PC',
+		done: false,
+		status: "a faire",
+		date: new Date(),
+	},
+	{
+		id: 5,
+		title: "Vendre l'ancien PC",
+		description: "Vendre l'ancien PC",
+		done: true,
+		status: "en cours",
+		date: new Date(),
+	},
+];
 
 export const getDatabase = async (res: express.Response) => {
 	return res.status(200).json({ message: 'Voici le tableau des taches', data: database });
@@ -53,6 +78,8 @@ export const postAdd = async (req: express.Request, res: express.Response) => {
 		title: req.body.title,
 		description: req.body.description,
 		done: false,
+		status: "a faire",
+		date: new Date(),
 	};
 	database.push(newTodo);
 	return res.status(200).json({ message: 'Tache ajoutée', data: newTodo });
